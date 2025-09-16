@@ -1,0 +1,16 @@
+### ---- What is Groovy --------###
+
+ - Groovy is an optionally typed, dynamic language for the Java platform with many features that are inspired by languages like Python, Ruby and Smalltalk. Unlike other alternative languages, it is designed as a companion not a replacement for Java.
+ - Groovy source code gets compiled in java Bytecode that can run on any platform if JRE is installed on a respective operatikng systems.
+ - Groovy performs a los of tasks behind the scene that makes it more agile and dynamic in nature.
+ - Best thing about Groovy is that any code written in Java can directly be used in Groovy as well. So Groovy classes can in herit any of the Java class and the same is true for Java as well.
+ - Groovy has some features like closure, Dynamic methid, Encapsulation of login in Object, etc. that makes it a superset of Java because this is not possible in Java but it is on Groovy.
+
+- Groovy is a high-level programming language:
+
+Here’s why:
+     > High-level languages are closer to human language, abstract away hardware details, and run on top of a virtual machine or runtime. Examples: Python, Java, Ruby.
+     > Low-level languages are closer to machine code or assembly, requiring you to manage memory or hardware directly. Examples: Assembly, C (to a degree).
+Groovy runs on the Java Virtual Machine (JVM), has dynamic typing, closures, metaprogramming, and a syntax designed to be more concise and readable than Java. You don’t deal with registers, memory management, or hardware directly → it’s definitely high-level. 
+
+
