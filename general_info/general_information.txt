@@ -13,4 +13,206 @@ Here’s why:
      > Low-level languages are closer to machine code or assembly, requiring you to manage memory or hardware directly. Examples: Assembly, C (to a degree).
 Groovy runs on the Java Virtual Machine (JVM), has dynamic typing, closures, metaprogramming, and a syntax designed to be more concise and readable than Java. You don’t deal with registers, memory management, or hardware directly → it’s definitely high-level. 
 
+- Java version 
+  $ java --version
+   openjdk 21.0.8 2025-07-15
+   OpenJDK Runtime Environment (build 21.0.8+9-Ubuntu-0ubuntu124.04.1)
+   OpenJDK 64-Bit Server VM (build 21.0.8+9-Ubuntu-0ubuntu124.04.1, mixed mode, sharing)
+
+- For downloading the Java JDK go to:
+   https://www.oracle.com/technetwork/java/javase/dowloads
+  there choose the correct version that fits your need depending on OS and architecture
+
+- Installation steps of Java including setting up Java in PATH, you can see on:
+     https://www.hostinger.com/tutorials/install-java-ubuntu?utm_campaign=Generic-Tutorials-DSA|NT:Se|LO:MX-EN&utm_medium=ppc&gad_source=1&gad_campaignid=20980195875&gbraid=0AAAAADMy-hZff2StX3Q9scrtA8CxaPYDu&gclid=Cj0KCQjw8p7GBhCjARIsAEhghZ3EgGK9LkBuDF4v4GwEgckhavJ2nu2QfyO3Iz-hefJxH-zyEuyrlzkaAuPAEALw_wcB
+
+- Installation of Eclipse IDE.
+  > Good youtube tutorial: https://www.youtube.com/watch?v=GVgwCRnz_EI
+  > basic command for installing Eclipse IDE on terminal with snap:
+    $ sudo snap install eclipse --classic
+
+#------------------------------------------------------------------------------------------------------#
+
+# Characteristics of files
+
+- Groovy files need to be saved with the .groovy extension, for example file_name.groovy
+
+
+# Syntax
+
+- How to comment a line on groovy.
+The way to comment out a line is the same way you do on UNIX systems:
+ // for single lines
+ /* */ inclosed in for  multiple lines
+
+Example:
+#! /usr/bin/emv groovy    <-----like in unix this is a shebang, it tells the OS which interpreter should
+                                be used to run the file if you execute it directly (instead of typing
+                                groovy myscript.groovy).
+
+// This is the first comment, this way you comment one line at a time
+
+/*
+ * This is our class that is going
+ * to have some sort of code that 
+ * is going to help to print
+ * Hello World.
+ * This is how you comment out 
+ * multiple lines.  
+ */
+
+println "Hello World"
+
+- Converting Java Class into Groovy Class
+
+This is a Java Class Script:
+----------------------------------------------------------------------
+package ScriptVsClass;
+
+public class FirstJavaClass {
+	
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String Success() {
+		return "Hello "+name;
+	}
+	
+	public static void main(String[] args) {
+		FirstJavaClass fj = new FirstJavaClass();
+		
+		fj.setName("Java to Groovy");
+		
+		System.out.println(fj.Success());
+		
+	}
+}
+-------------------------------------------------------------------------
+
+If you want to run this a groovy it can also be done, anything Java can be run as groovy.
+To make this pure groovy class you need to take into account the following:
+- All method and class come as public by default, remove all the access modifiers.
+  > In Java, modifiers are keywords that alter or restrict the behavior or visibility of
+    classes, methods, variables, and constructors. There are two main types of modifiers:
+    Access Modifiers (public, private, protected, and default) which control visibility, 
+    and Non-Access Modifiers (static, final, abstract, synchronized, native, volatile, 
+    transient, and strictfp) which provide other information about how an element works.
+ 
+- In Groovy you need the semicolon at the end is optional.
+- Static type definitions can be set as "def", String ----> def
+- getter and setter are implicitly intializaed once we create any field, so we can remove
+  all getName or setName in the script
+- To express variables you can use the $ sign to express it
+- System.out is not used in groovy
+
+This is how it ends up:
+--------------------------------------------------------------------------
+
+class FirstJavaClass {
+	
+	def name
+
+	def Success() {
+		return "Hello ${name}"
+	}
+	
+	static void main(String[] args) {
+		def fj = new FirstJavaClass()
+		
+		fj.name = "Java to Groovy"
+
+		println(fj.Success())
+		
+	}
+}
+ 
+----------------------------------------------------------------------------
+
+- Identifiers
+In Groovy (just like in Java), an identifier is the name you give to things like 
+variables, methods, classes, interfaces, or packages.
+
+For example:
+
+class Person {
+    String name   // <-- "name" is an identifier
+    def greet() { // <-- "greet" is an identifier
+        println "Hello, $name"
+    }
+}
+
+> Rules for identifiers in Groovy
+
+  - Must start with a letter, underscore (_), or dollar sign ($).
+
+  - Can be followed by letters, digits, underscores, or dollar signs.
+
+  - Cannot be a reserved keyword (class, def, if, etc.).
+
+  - Are case-sensitive → Name and name are different identifiers.
+
+  Examples of valid identifiers:
+
+   username
+   _user123
+   $counter
+   Name2
+
+  Examples of Invalid identifiers:
+
+   2name     // cannot start with digit
+   class     // reserved keyword
+   my-name   // dash is not allowed
+
+Special Groovy twist
+
+Groovy also supports quoted identifiers (a feature not in Java).
+You can use backticks or string-style quotes when you need characters that aren’t 
+normally allowed in identifiers:
+
+     def "user-name" = "Daniel"
+     println "user-name"  // prints Daniel
+
+So in short:
+An identifier in Groovy is the name that identifies a program element 
+(variable, method, class, property, etc.), following Java’s rules plus the extra 
+flexibility of quoted identifiers.
+
+
+- Any pre-identified keywords of groovy could not be used as identifier in groovy so here is
+ the list of keywords
+
+As, assert, Break, case, Catch, class, Const, continue, Def, default, Do, else, Enum, extends,
+
+False, finally, For, goto, If, implements, Import, in, Instanceof, interface, New, null, 
+
+Package, return, Super, switch, This, throw, Throws, trait, True, try, While.
+
+- In groovy there are two type of identifier
+
+  1-Normal Identifier : All above examples are normal identifier, except the pre-identified keywords.
+
+  2-Quoted identifier : These identifier normally are some short of properties that comes 
+    after dot(.) and these identifier might contains dash, space and some time special characters
+    as well. For the same let’s take example of map
+
+      a.Empty map expression is  def map =[:]
+
+      b.Now inside this we are going to add key and value pair and this will take quoted key 
+        and value like this:
+                i.  Here key is “Name of programming language”
+
+                ii. Value is “Groovy”
+
+      c.So expression would be like this:
+
+                i. map.“Name of programming language” = “Groovy”
+
 
