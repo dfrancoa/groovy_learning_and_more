@@ -212,7 +212,50 @@ Package, return, Super, switch, This, throw, Throws, trait, True, try, While.
                 ii. Value is “Groovy”
 
       c.So expression would be like this:
-
                 i. map.“Name of programming language” = “Groovy”
+
+- Variables in Groovy
+     >> Data Types:
+         byte             (Java and Groovy)
+         short            (Java and Groovy)
+         int              (Java and Groovy)
+	 long             (Java and Groovy)
+	 float            (Java and Groovy)
+	 double           (Java and Groovy)
+	 char(character)  (Java and Groovy)
+         boolean          (Groovy)
+         string           (Groovy)
+
+   > Static Typing in Groovy
+     You declare the type explicitly, just like in Java.
+     The compiler checks type correctness at compile time (if static compilation is enabled).
+     Example:
+              String name = "Daniel"
+              int age = 30
+     Here:
+     name is always a String.
+     age is always an int.
+     If you later try age = "thirty", Groovy will complain under static compilation (@CompileStatic).
+
+   > Dynamic Typing in Groovy
+     You use the keyword def or omit the type entirely.
+     The variable’s type is resolved at runtime, not compile time.
+     Example:
+              def name = "Daniel"   // right now it's a String
+              name = 42             // later it can be reassigned as an Integer
+
+     Here name changes from String to Integer because Groovy is dynamically typed by default.
+
+   > Mixed Typing
+     Groovy lets you mix both styles in the same program:
+
+		class Person {
+		    String name   // statically typed
+		    def age       // dynamically typed
+		}
+
+		def p = new Person(name: "Ana", age: 25)
+		p.age = "twenty-five"  // allowed (runtime binding)
+
 
 
